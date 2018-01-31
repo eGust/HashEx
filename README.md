@@ -1,8 +1,7 @@
 # HashEx
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/HashEx`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+1. `HashEx::JsObject` - JavaScript-Object-like hash.
+1. `HashEx::Base` - Abstract base class.
 
 ## Installation
 
@@ -22,17 +21,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### `HashEx::Base`
 
-## Development
+Just override `HashEx::Base#convert_key` to create your own one
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### `HashEx::JsObject`
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+It works like JS Object. For an instance `h`:
+
+1. `h[:key]`, `h['key']` and `h.key` are equal.
+1. `h.a = { foo: { bar: { baz: 123} } }` will convert `Hash` to `HashEx::JsObject` recursively. `h.a.foo` and `h.a.foo.bar` will be instances of `HashEx::JsObject`.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/HashEx.
+Bug reports and pull requests are welcome on GitHub at https://github.com/eGust/HashEx.
 
 ## License
 
